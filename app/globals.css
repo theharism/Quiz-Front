@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --mantality-red: #c11212;
+  --mantality-dark-red: #a10e0e;
+  --mantality-light-red: #d41515;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.mantality-input {
+  @apply w-full bg-transparent border-b-2 border-white/50 focus:border-white focus:outline-none text-white text-xl py-2 placeholder:text-white/50;
+}
+
+.mantality-button {
+  @apply bg-white text-mantality-red font-bold text-xl px-8 py-3 rounded-full hover:bg-white/90 transition-colors;
+}
+
+.option-button {
+  @apply flex items-center w-full max-w-md text-left text-white text-xl border border-white/50 rounded-full py-3 px-6 mb-4 hover:bg-white/10 transition-colors;
+}
+
+.option-button.selected {
+  @apply bg-white/20 border-white;
+}
+
+.option-letter {
+  @apply flex items-center justify-center w-8 h-8 rounded-full border border-white mr-3 text-base;
+}
+
+.nav-arrows {
+  @apply fixed bottom-6 right-6 flex gap-2;
+}
+
+.nav-arrow {
+  @apply flex items-center justify-center w-10 h-10 rounded-full bg-white text-mantality-red;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
