@@ -51,7 +51,7 @@ export default function QuestionPage() {
     // Fetch questions from API
     const fetchQuestions = async () => {
       try {
-        const res = await fetch("http://localhost:3005/api/v1/questions")
+        const res = await fetch("/api/v1/questions")
         const data = await res.json()
 
         if (data.success && data.data) {
