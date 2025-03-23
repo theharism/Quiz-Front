@@ -26,6 +26,10 @@ const nextConfig = {
       {
         source: "/api/:path*",
         destination: `http://localhost:3005/api/:path*`, // Proxy API requests
+      },
+      {
+        source: "/uploads/:path*",
+        destination: `http://localhost:3005/uploads/:path*`, // Proxy API requests
       }
     ];
   },
