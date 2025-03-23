@@ -39,6 +39,7 @@ export default function SubmitPage() {
     GLP1: "GLP1 (Glucagon-like Peptide-1)",
     Tadalafil: "Tadalafil (Libido / Erectile Dysfunction)",
   }
+
   const nameQuestion = questions?.find((question) => question.text.toLocaleLowerCase().includes("name"));
   const name = responses.find((response) => response.questionId === nameQuestion?._id)?.writtenAnswer
   

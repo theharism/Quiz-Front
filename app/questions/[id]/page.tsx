@@ -9,6 +9,7 @@ import NavigationArrows from "@/components/navigation-arrows"
 import { useToast } from "@/hooks/use-toast"
 import { Loader2 } from "lucide-react"
 import { use } from "react";
+import { Slider } from "@/components/ui/slider"
 
 interface Option {
   text: string
@@ -64,7 +65,7 @@ export default function QuestionPage() {
           } else {
             const initialResponses = data.data.map((q: Question) => ({
               questionId: q._id,
-              selectedOptions: q.type === "multiple-choice" ? [] : null,
+              selectedOptions: q.type === "multiple-choice" ? [] : q.type === "slider" ? [q?.options[0]?._id] : null,
               writtenAnswer: q.type === "text" ? "" : null,
             }))
             setResponses(initialResponses)
@@ -100,7 +101,7 @@ export default function QuestionPage() {
       } else {
         setCurrentResponse({
           questionId: questions[questionIndex]._id,
-          selectedOptions: questions[questionIndex].type === "multiple-choice" ? [] : null,
+          selectedOptions: questions[questionIndex].type === "multiple-choice" ? [] : questions[questionIndex].type === "slider" ? [questions[questionIndex].options[0]?._id] : null,
           writtenAnswer: questions[questionIndex].type === "text" ? "" : null,
         })
       }
@@ -114,8 +115,16 @@ export default function QuestionPage() {
     })
   }
 
-  const handleOptionSelect = (optionId: string) => {
+  const handleOptionSelect = (optionId: string | number) => {
     const question = questions[questionIndex]
+
+    if(question.type === 'slider') {
+      setCurrentResponse({
+        ...currentResponse,
+        selectedOptions: [question?.options[optionId-1]?._id],
+      })
+      return
+    }
 
     if (question.allowMultipleSelections) {
       // For multiple selection questions
@@ -208,6 +217,7 @@ export default function QuestionPage() {
 
   const currentQuestion = questions[questionIndex]
   const isMultipleChoice = currentQuestion.type === "multiple-choice"
+  const isSlider = currentQuestion.type === "slider"
   const isRequired = currentQuestion.isRequired
 
   // Get option letters (A, B, C, D, etc.)
@@ -257,6 +267,22 @@ export default function QuestionPage() {
                     {option.text}
                   </button>
                 ))}
+              </div>
+            ) : isSlider ? (
+              <div className="max-w-xl">
+                <div className="flex justify-between max-w-wl mb-4">
+                  {currentQuestion?.options?.map((option) => option?.image)?.map((image, index) => (
+                    <img key={index} src={image} alt={`Option ${index + 1}`} className="w-16 h-16 rounded-full" />
+                  ))}
+                </div>
+                <Slider
+                  min={1}
+                  max={currentQuestion?.options?.length}
+                  step={1}
+                  value={[Number(currentQuestion?.options?.find(option => option._id === currentResponse.selectedOptions?.[0])?.text)]}
+                  className="mantality-slider"
+                  onValueChange={(id) => handleOptionSelect(id)}
+                />
               </div>
             ) : (
               <div className="max-w-xl">

@@ -16,6 +16,9 @@ body {
 .mantality-input {
   @apply w-full bg-transparent border-b-2 border-white/50 focus:border-white focus:outline-none text-white text-xl py-2 placeholder:text-white/50;
 }
+.mantality-slider {
+  @apply relative w-full h-2 bg-white/50 rounded-full;
+}
 
 .mantality-button {
   @apply bg-white text-mantality-red font-bold text-xl px-8 py-3 rounded-full hover:bg-white/90 transition-colors;
