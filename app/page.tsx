@@ -27,7 +27,7 @@ const [home, setHome] = useState<HomePage>();
   },[])
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen">
+    <div className="flex flex-col bg-mantality-red md:flex-row min-h-screen">
       {/* Left side - Red background with content */}
         <div className="w-full md:w-1/2 bg-mantality-red p-8 md:p-12 flex flex-col">
           <div className="mb-8">
