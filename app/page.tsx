@@ -3,6 +3,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { useEffect, useState } from "react"
+import Logo from "@/components/logo"
 
 interface HomePage {
   _id: string
@@ -31,12 +32,12 @@ const [home, setHome] = useState<HomePage>();
       {/* Left side - Red background with content */}
         <div className="w-full md:w-1/2 bg-mantality-red p-8 md:p-12 flex flex-col">
           <div className="mb-8">
-            {/* <Logo /> */}
-            <img
+            <Logo />
+            {/* <img
               src={home?.logo}
               alt="logo preview"
               className="h-20 w-20 rounded-full"
-            />
+            /> */}
           </div>
 
           <div className="flex-grow flex flex-col justify-center max-w-xl">
