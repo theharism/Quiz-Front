@@ -1,7 +1,5 @@
 "use client"
 
-import type React from "react"
-
 import { useEffect, useState } from "react"
 import { useRouter,useParams } from "next/navigation"
 import Logo from "@/components/logo"
@@ -271,15 +269,18 @@ export default function QuestionPage() {
             ) : isSlider ? (
               <div className="max-w-xl">
                 <div className="flex justify-between max-w-wl mb-4">
-                  {currentQuestion?.options?.map((option) => option?.image)?.map((image, index) => (
-                    <img key={index} src={image} alt={`Option ${index + 1}`} className="w-16 h-16 rounded-full" />
+                  {currentQuestion?.options?.map((option) => (
+                    <div className="flex flex-col justify-center items-center" key={option._id}>
+                      <img src={option?.image} alt={`Option ${getOptionLetter(currentQuestion.options.indexOf(option))}`} className="w-20 h-20 rounded-full" />
+                      <div className="text-white text-sm mt-1">{option.text}</div>
+                    </div>
                   ))}
                 </div>
                 <Slider
                   min={1}
                   max={currentQuestion?.options?.length}
                   step={1}
-                  value={[Number(currentQuestion?.options?.find(option => option._id === currentResponse.selectedOptions?.[0])?.text)]}
+                  value={[currentQuestion?.options?.findIndex(option => option._id === currentResponse.selectedOptions?.[0]) + 1]}
                   className="mantality-slider"
                   onValueChange={(id) => handleOptionSelect(id)}
                 />
