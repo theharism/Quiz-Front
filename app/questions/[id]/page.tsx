@@ -271,7 +271,7 @@ export default function QuestionPage() {
                 <div className="flex justify-between max-w-wl mb-4">
                   {currentQuestion?.options?.map((option) => (
                     <div className="flex flex-col justify-center items-center" key={option._id}>
-                      <img src={option?.image} alt={`Option ${getOptionLetter(currentQuestion.options.indexOf(option))}`} className="w-20 h-20 rounded-full" />
+                      <img src={option?.image} alt={`Option ${getOptionLetter(currentQuestion.options.indexOf(option))}`} className="w-24 h-24 rounded-full" />
                       <div className="text-white text-sm mt-1">{option.text}</div>
                     </div>
                   ))}
